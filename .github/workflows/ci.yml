@@ -1,0 +1,22 @@
+name: Simple HTML CI
+
+on:
+  push:
+    branches: [ main ]
+
+jobs:
+  validate-html:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Cloner le dépôt
+      uses: actions/checkout@v2
+
+    - name: Vérifier la présence du fichier index.html
+      run: |
+        if [ ! -f index.html ]; then
+          echo "❌ Fichier index.html introuvable !"
+          exit 1
+        else
+          echo "✅ Fichier index.html trouvé !"
+        fi
